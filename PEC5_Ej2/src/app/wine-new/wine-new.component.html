@@ -1,0 +1,46 @@
+<h2>Crear nuevo vino!</h2>
+
+<div class="form-group">
+  <form (ngSubmit)="createWine(wineForm)" #wineForm="ngForm" >
+    <div class="wine-name">
+      <input type="text"
+             placeholder="Wine Name"
+             required
+             name="wineName"
+             #wineName="ngModel"  
+             [ngModel]="wine.name">
+    </div>
+    <div *ngIf = "wineName.errors">
+        <span>Wine name is required</span> 
+    </div>
+    <div class="wine-price">
+      <input type="number"
+             placeholder="Wine Price"
+             required
+             name="winePrice"
+             #winePrice="ngModel"  
+             [ngModel]="wine.price">
+    </div>
+    <div *ngIf = "winePrice.errors">
+        <span>Wine name is required</span> 
+    </div>
+    <div class="wine-url">
+      <input type="text"
+             placeholder="Wine Image URL"
+             required
+             name="wineURL"
+             #wineURL="ngModel"  
+             [ngModel]="wine.imageUrl"
+             pattern="^(https|http)(:\/\/)[-a-zA-Z0-9.\/]+(([.])([a-z]{2,3}))$">
+    </div>
+    <div *ngIf = "wineURL.errors?.['required']">
+        <span>Wine Image URL required</span> 
+    </div>
+    <div *ngIf = "wineURL.errors?.['pattern']">
+        <span>Wine Image URL does not seem to be a valid URL</span> 
+    </div>
+    <input type="checkbox"> On sale
+    <button type="submit">Create</button>
+  </form>
+</div>
+
